@@ -1,5 +1,4 @@
 class User:
-
     def __init__(self, name: str, pin: int, asset: float):  # asset will soon be Asset type
         assert 1000 <= pin <= 9999, f"Pin must have 4 numerical digits!"
 

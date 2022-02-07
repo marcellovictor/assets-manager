@@ -6,7 +6,7 @@ class AccountService:
     accounts_file = "data/users.txt"
 
     @classmethod
-    def register(cls, username: str, pin: int) -> None:
+    def register(cls, username: str, pin: int) -> User:
         """
         Gets username and pin to put in
         user data file
@@ -35,6 +35,8 @@ class AccountService:
 
         with open(cls.accounts_file, 'a') as f:
             f.write(f"{username}:{pin}\n")
+
+        return User(username, pin, 0.0)
 
     @classmethod
     def login(cls, username: str, pin: int) -> User:

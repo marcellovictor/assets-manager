@@ -1,6 +1,28 @@
 from entities.user import User
-from services.account_service import AccountService
+from services.account_service import AccountService as AcS
+from tkinter import *
+from GUI.initial_screen import *
+from GUI.screen import *
+from GUI.login_frame import *
 
+# TODO gets WHERE TO START information from "data folder" and stores it at "state" variable
+state = 1
+
+# Actual program
+root = Tk()
+root.geometry("800x600+350+100")
+root.title("Assets Manager")
+
+if state == 1:
+    frame = LoginFrame(root)
+    frame.pack()
+
+root.mainloop()
+
+
+
+
+"""
 print("==============")
 print("Sign in (S)")
 print("Register (R)")
@@ -61,3 +83,4 @@ elif command == 'R':  # register
     print()
     print("Account registered successfully!")
     print()
+"""
