@@ -6,14 +6,15 @@ from tkinter import *
 from services.account_service import AccountService as AcS
 from GUI.screen import *
 from entities.user import *
+from GUI.main_menu_screen import *
 
 
-class InitialScreen(Screen):
+class LoginScreen(Screen):
     def __init__(self):
-        super().__init__(title="Login/Register")
+        super().__init__(title="Login")
 
         # Page main frame
-        self.__frame = LabelFrame(self.root, text="InitalScreen")
+        self.__frame = LabelFrame(self.root, text="Login")
         self.__frame.pack()
 
         # Welcome Label
@@ -35,11 +36,12 @@ class InitialScreen(Screen):
         self.__input_pin.grid(row=2, column=1)
 
         # Login button
-        self.__button_login = Button(self.__frame, text="Login")
+        self.__button_login = Button(self.__frame, text="Login", command=lambda: [self.root.destroy(), MainMenuScreen()])
         self.__button_login.grid(row=3, column=1)
 
         # Loop //-----//-----//
         self.root.mainloop()
+
 
     """   
     @property
@@ -72,12 +74,15 @@ class InitialScreen(Screen):
     """
 
     def button_login_clicked(self):
-        user = AcS.login(self.__input_username.get(), int(self.__input_pin.get()))
+        self.root.destroy()
+        MainMenuScreen()
+
+        """user = AcS.login(self.__input_username.get(), int(self.__input_pin.get()))
         if type(user) == User:
             return user
         else:
             pass
-            # TODO janelinha de erro que diz invalid data
+            # TODO janelinha de erro que diz invalid data"""
 
 
 
