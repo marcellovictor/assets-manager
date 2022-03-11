@@ -1,53 +1,59 @@
 """
 This class is probably going to be deleted
 """
-
+import tkinter
 from tkinter import *
 from services.account_service import AccountService as AcS
 from GUI.screen import *
 from entities.user import *
 from GUI.main_menu_screen import *
+from PIL import ImageTk, Image
 
 
 class LoginScreen(Screen):
     def __init__(self):
         super().__init__(title="Login")
 
-        # Page main frame
-        self.__frame = LabelFrame(self.root, text="Login")
-        self.__frame.pack()
+        # Page Settings
+        self.root.configure(bg='#65A8E1')
+
+        """
+        Down here I use a background image as base to put
+        widgets in its' right places
+        """
+
+        bg_image = ImageTk.PhotoImage(Image.open('imgs\\LoginScreen.jpg'))
+        bg_label = Label(self.root, image=bg_image)
+        bg_label.place(x=0, y=0)
 
         # Welcome Label
-        self.__label_welcome = Label(self.__frame, text="Welcome", padx=200)
-        self.__label_welcome.grid(row=0, column=1)
+        self.__label_welcome = Label(self.root, text="Welcome", padx=200)
+        # self.__label_welcome.grid(row=0, column=1)
+        self.__label_welcome.place(x=180, y=30)
 
         # Username
-        self.__label_username = Label(self.__frame, text="username: ")
-        self.__label_username.grid(row=1, column=0)
+        self.__label_username = Label(self.root, text="username: ")
+        self.__label_username.place(x=240, y=285)
 
-        self.__input_username = Entry(self.__frame)
-        self.__input_username.grid(row=1, column=1)
+        self.__input_username = Entry(self.root)
+        self.__input_username.place(x=320, y=285)
 
         # Pin
-        self.__label_pin = Label(self.__frame, text="pin: ")
-        self.__label_pin.grid(row=2, column=0)
+        self.__label_pin = Label(self.root, text="pin: ")
+        self.__label_pin.place(x=240, y=340)
 
-        self.__input_pin = Entry(self.__frame)
-        self.__input_pin.grid(row=2, column=1)
+        self.__input_pin = Entry(self.root)
+        self.__input_pin.place(x=320, y=340)
 
         # Login button
-        self.__button_login = Button(self.__frame, text="Login", command=lambda: [self.root.destroy(), MainMenuScreen()])
-        self.__button_login.grid(row=3, column=1)
+        self.__button_login = Button(self.root, text="Login", command=lambda: [self.root.destroy(), MainMenuScreen()])
+        self.__button_login.place(x=370, y=410)
 
         # Loop //-----//-----//
         self.root.mainloop()
 
 
-    """   
-    @property
-    def frame(self):
-        return self.__frame
-    
+    """
     @property
     def label_welcome(self):
         return self.__label_welcome
